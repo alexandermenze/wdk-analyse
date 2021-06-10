@@ -1,0 +1,7 @@
+database_user: "root"
+database_password: "rootpwd"
+database_name: "data"
+database_host: "localhost"
+database_port: 2424
+table_index_values_name: "index_value"
+data_file_folder: "rawData"
