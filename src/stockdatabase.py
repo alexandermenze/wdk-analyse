@@ -1,4 +1,5 @@
 from datetime import date
+import operator
 import pyorient
 
 
@@ -62,7 +63,9 @@ class StockDatabase(object):
 
         result = [x.oRecordData for x in self.client.query(
             query_string, limit)]
-        return list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"], x["Adj_Close"], x["Volume"], x["ISIN"], x["Region"]) for x in result])
+        result = list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"],
+                      x["Adj_Close"], x["Volume"], x["ISIN"], x["Region"]) for x in result])
+        return sorted(result, key=operator.attrgetter('date'))
 
     def insert_index_values(self, df, isin, region):
         self.__prepare_index_data(df, isin, region)
@@ -77,5 +80,5 @@ class StockDatabase(object):
         df["ISIN"] = isin
         df["Region"] = region
 
-    def __get_date_string(date):
+    def __get_date_string(self, date):
         return date if isinstance(date, str) else date.strftime('%Y-%m-%d')
