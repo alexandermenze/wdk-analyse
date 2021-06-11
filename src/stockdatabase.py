@@ -63,8 +63,8 @@ class StockDatabase(object):
 
         result = [x.oRecordData for x in self.client.query(
             query_string, limit)]
-        result = list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"],
-                      x["Adj_Close"], x["Volume"], x["ISIN"], x["Region"]) for x in result])
+        result = list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"], (x["Adj_Close"]
+                      if "Adj_Close" in x else x["Close"]), x["Volume"], x["ISIN"], x["Region"]) for x in result])
         return sorted(result, key=operator.attrgetter('date'))
 
     def insert_index_values(self, df, isin, region):
