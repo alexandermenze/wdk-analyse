@@ -1,0 +1,1 @@
+# Praxisarbeit - Entwicklung eines Prototypen zur digitalen Vertriebsunterstützung für Polstermöbel der Polipol Gruppe
