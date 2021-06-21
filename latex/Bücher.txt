@@ -1,138 +1,20 @@
-Kapitel: Digitale Präsenz beim physikalischen Einkaufen: Vom „nutzenorientierten Ansatz“ zum erfolgreichen Customer Engagement
-https://www.springerprofessional.de/digitale-praesenz-beim-physikalischen-einkaufen-vom-nutzenorient/18729584?searchResult=12.app%20entwicklung%20effizient%20erfolgreich&searchBackButton=true&fulltextView=true
+Aktienmarkt Indizes:
 
-Buch: App-Entwicklung – effizient und erfolgreich
-https://www.springerprofessional.de/app-entwicklung-effizient-und-erfolgreich/10533718?searchResult=1.app%20entwicklung%20effizient%20erfolgreich&searchBackButton=true
+Equities and Equity Indices - Financial Mathematics, Derivatives and Structured Products
+https://www.springerprofessional.de/equities-and-equity-indices/16861122?searchResult=2.equity%20indices&searchBackButton=true&fulltextView=true
 
-Artikel: Scalable online vetting of Android apps for measuring declared SDK versions and their consistency with API calls
-https://www.springerprofessional.de/scalable-online-vetting-of-android-apps-for-measuring-declared-s/18763102?searchResult=14.Android&searchBackButton=true&fulltextView=true
-
-Kapitel: AndroLib: Third-Party Software Library Recommendation for Android Applications
-https://www.springerprofessional.de/androlib-third-party-software-library-recommendation-for-android/18643084?searchResult=24.Android&searchBackButton=true&fulltextView=true
-
-Kapitel: A Technique for Parallel GUI Testing of Android Applications
-https://www.springerprofessional.de/a-technique-for-parallel-gui-testing-of-android-applications/18647290?searchResult=21.Android&searchBackButton=true&fulltextView=true
-
-Kapitel: An Optimization of Memory Usage Based on the Android Low Memory Management Mechanisms
-https://www.springerprofessional.de/an-optimization-of-memory-usage-based-on-the-android-low-memory-/18700748?searchResult=20.Android&searchBackButton=true&fulltextView=true
-
-Kapitel: User Experience verstehen
-https://www.springerprofessional.de/user-experience-verstehen/18509082?searchResult=3.user%20experience&searchBackButton=true&fulltextView=true
-
-Buch: Digitales Produktmanagement
-https://www.springerprofessional.de/digitales-produktmanagement/18509080?searchBackButton=true
-
-Artikel: Define and exploit guidelines for interactive redesign of products’ User eXperience
-https://www.springerprofessional.de/define-and-exploit-guidelines-for-interactive-redesign-of-produc/18469172?searchResult=23.user%20experience&searchBackButton=true&fulltextView=true
-
-Masterarbeit: Konzeption und Implementierung einer Verkehrsinformationsapplikation für Smartphones am Beispiel des iPhones
-https://elib.dlr.de/73802/1/masterarbeit.pdf
-
-Bachelorarbeit (Müll): Kochbuch App
-https://core.ac.uk/download/pdf/51449096.pdf
-
-Bachelorarbeit: Entwicklung einer Android-App zur Erkennung und Übersetzung von Worten in Kamerabildern
-https://kola.opus.hbz-nrw.de/opus45-kola/frontdoor/deliver/index/docId/699/file/bach222.pdf
-
-
-Springer:
-Suche = https://www.springerprofessional.de/search?q.filters[0].values[0]=%28documenttype%3A%28SPRBook%29%29+OR+%28documenttype%3ASPRSeries+OR+documenttype%3ASPRSubSeries%29+OR+%28documenttype%3A%28SPRChapter%29%29+OR+%28documenttype%3A%28SPRJournal%29%29+OR+%28documenttype%3A%28SPRArticle%29%29+OR+%28%28documenttype%3ACMArticle+OR+documenttype%3ASPRScientificArticle%29+AND+NOT+contentcategorytaxonomyFacets%3A%22News%22%29&q.searchType=AdvancedSearch&q.courseType=&q.filters[0].mode=1&q.sortType=Relevance&q.page=0&q.query=android+app&q.originQuery=&q.displayQuery=android+app+im+Volltext&q.manualSort=false&q.facets=false&q.filters[0].name=documenttype&view=advanced&view=advanced#18643084
-https://www.springerprofessional.de/learn-android-studio-4/18445192
-https://www.springerprofessional.de/alba-a-model-driven-framework-for-the-automatic-generation-of-an/18788918?searchResult=2.android%20app&searchBackButton=true
-https://www.springerprofessional.de/scalable-online-vetting-of-android-apps-for-measuring-declared-s/18763102?searchResult=10.android%20app&searchBackButton=true
+Geld- und Vermögensanlage
+https://www.springerprofessional.de/geld-und-vermoegensanlage/19054466?searchResult=20.equity%20index&searchBackButton=true
 
 
 
-Digitales Produktmanagement: https://www.springerprofessional.de/digitales-produktmanagement/18509080
+Weekend Effect:
 
+Individual versus institutional investors and the weekend effect
+https://www.springerprofessional.de/individual-versus-institutional-investors-and-the-weekend-effect/10857228?searchResult=20.weekend%20effect&searchBackButton=true
 
-Quellen zu digitaler Vertriebsunterstützung:
-https://www.springerprofessional.de/app-zur-vertriebsunterstuetzung/3406588?searchResult=2.app%20vertriebsunterst%C3%BCtzung&searchBackButton=true&fulltextView=true
-https://www.springerprofessional.de/mobile-business/18621754?searchResult=1.app%20vertriebsunterst%C3%BCtzung&searchBackButton=true&fulltextView=true
-https://www.springerprofessional.de/die-vorueberlegung-der-nutzen-der-multimedialen-verkaufsunterstu/14005282?searchResult=1.nutzen%20multimedialen%20verkaufsunterst%C3%BCtzung&searchBackButton=true
-https://www.springerprofessional.de/mobile-solutions-im-vertrieb/6949092?searchResult=9.nutzen%20multimedialen%20verkaufsunterst%C3%BCtzung&searchBackButton=true&fulltextView=true
-https://www.springerprofessional.de/customer-experience/vertriebskanaele/vertrieb-wird-noch-digitaler/18785896?searchResult=3.digitale%20m%C3%B6glichkeiten%20vertrieb&searchBackButton=true
+The Role of the Weekend Effect in European REITs
+https://www.springerprofessional.de/the-role-of-the-weekend-effect-in-european-reits/7326096?searchResult=12.weekend%20effect&searchBackButton=true
 
-
-
-Weitere Ideen / Stichwörter:
-- Prototyping
-
-
-Gliederung:
-
-1. Einleitung
-    1.1 Vorstellung des Unternehmens (Marktführer Europa)
-    1.2 Motivation (Apps zur Vertriebsunterstützung, Möbelmarkt Statista?)
-    1.3 Aufbau und Struktur (Erst Smartphone und Möbelmarkt Grundinfos, Dann Android als Plattform, Dann Umsetzung, Dann Ausblick)
-2. Grundlagen
-    2.1 Smartphones und Marktentwicklung
-    2.2 Apps
-        2.2.1 Plattformen (Charakteristiken)
-        2.2.2 User Experience
-        2.2.3 Nativ vs. Hybrid vs. Web
-    2.3 Android
-        2.3.0 Entwicklungstools unter Android (Java, Kotlin, Gradle, Android SDK, Emulator, Android Studio, UI-Elemente, Icons, AndroidX, Versionen und Geräteklassen, Großer Markt an verschiedenen Geräten)
-        2.3.0 Kernkomponenten einer App (Activities, Fragments, Navigation dazwischen)
-        2.3.0 UI-Komponenten und Layouts (Model-View-Controller ?)
-        2.3.0 Material Design Guidelines (Besonderheiten bei Android Apps)
-        2.3.0 Google Play Store
-    2.4 MSAL
-    2.5 Datenquellen und Formate (JSON?, REST, MediaClassification etc. wo kommen die Daten her und wie sehen sie aus?, Komponentendiagramm!)
-3. Umsetzung
-    3.1 Anforderungsanalyse
-        3.1.1 Funktionale Anforderungen (User Stories)
-        3.1.2 Nicht-funktionale Anforderungen
-        3.1.3 Personas
-        3.1.4 Anwendungsfallanalyse
-    3.2 Konzeption
-        3.2.1 Architektur (MVC, Data Binding)
-        3.2.2 Datenbasis (Komponentendiagramm: SAP, DeinKonfigurator, externe Medien)
-        3.2.3 Mockups
-    3.3 Prototyping
-        Einbinden der Daten (JSON Dateien)
-        Unterstützung verschiedener Geräteklassen und Android-Versionen
-        Design von Symbolen und Icons
-        DarkMode
-        Einbinden von externen Medien (Bilder, Videos und Konvertierung)
-        (USB-)Debugging und Performanceanalyse
-        Material Design nutzen + gute User Experience
-        Einbauen eines Filters über das gesamte Sortiment
-        Strukturierung des Quellcodes
-    3.4 Tests
-        3.3.1 Unit-Tests
-        3.3.2 Auf Emulator
-        3.3.3 Auf physischen Geräten (evtl. Test der Performance)
-        3.3.4 Blackbox-Tests (mit Microsoft Forms)
-    3.4 Verteilung der App (Google Play)
-4. Schlussbetrachtung
-    4.1 Fazit (Endergebnis, Gut/Schlecht)
-    4.2 Ausblick
-
-
-Definitionen:
-- Apps
-- Smartphone
-
-Nutzung der Grundlagen:
-- Arten von mobilen Anwendungen
-- Android SDK, Schnittstellen
-- Android Studio
-- Mehrere Android Versionen
-- Emulator
-- Versions Fragmentation
-- Activities / Fragments
-- AndroidManifest (Berechtigungen und Activities)
-- Android App Bundle
-- Mehrere Geräteklassen (Resources, DPI, PPI)
-- ViewModels
-- Data Binding
-- Material Design (Farbe, Markenpräzens, Kontrast, BottomNav, TopBar, Navigation, Cards, vorgefertigte Komponenten)
-- Dark Mode (Kontrast, Oberflächen)
-
-Feedback:
-
-- Verschlanken, weniger detailliert und nicht so spezifisch
-- Vielleicht noch was zwischen 4 und 5
-- Abstract
-- Quelltext im Text hervorheben
+The Short-Selling Hypothesis of Weekend Effect and T + 1 Trading Mechanism
+https://www.springerprofessional.de/the-short-selling-hypothesis-of-weekend-effect-and-t-1-trading-m/18822930?searchResult=1.weekend%20effect&searchBackButton=true&fulltextView=true
