@@ -24,7 +24,7 @@ class TimeRange(object):
 def create_weekday_statistic(data):
     return list([
         WeekdayStatistic(i, __count_days_by_weekday(data, i), __count_days_pos_neg(data, i, True), __count_days_pos_neg(
-            data, i, False), __sum_value_changes(data, i, True), __sum_value_changes(data, i, False))
+            data, i, False), __sum_value_changes(data, i, True), __sum_value_changes(data, i, False))
         for i
         in range(0, 5)
     ])
