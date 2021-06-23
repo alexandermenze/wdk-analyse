@@ -63,11 +63,14 @@ Die vier am häufigsten vertretenen Datenmodelle sind \enquote{Key-Value}, \enqu
 % encrypting stored content
 % 3rd party plugins
 
-OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. Sie wurde in Java geschrieben und ist damit komplett plattformunabhängig. Als Datenmodell können sowohl Dokumente als auch Graphen verwendet werden. OrientDB erlaubt bei der Nutzung von Dokumenten sowohl Schemalose als auch Schemabehaftete Modi. Des Weiteren unterstützt sie die typischen Fähigkeiten einer NoSQL wie Fehlertoleranz, Clustering, einfache horizontale Skalierung und Datenreplikation über mehrere Instanzen. Dabei soll die Datenbank wenig Arbeitsspeicher nutzen und erlaubt zudem Sicherheitsfeatures wie die Verschlüsselung der Daten auf der Festplatte. Im Gegensatz zu anderen NoSQL Datenbanken kann OrientDB eine transaktionale Sicherheit über mehrere Instanzen gewährleisten.
+OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. Sie wurde in Java geschrieben und ist damit komplett plattformunabhängig. Als Datenmodell können sowohl Dokumente als auch Graphen verwendet werden. OrientDB erlaubt bei der Nutzung von Dokumenten sowohl Schemalose als auch Schemabehaftete Modi. Des Weiteren unterstützt sie die typischen Fähigkeiten einer NoSQL wie Fehlertoleranz, Clustering, einfache horizontale Skalierung und Datenreplikation über mehrere Instanzen. Dabei soll die Datenbank wenig Arbeitsspeicher nutzen und erlaubt zudem Sicherheitsfeatures wie die Verschlüsselung der Daten auf der Festplatte. Im Gegensatz zu anderen NoSQL Datenbanken kann OrientDB eine transaktionale Sicherheit über mehrere Instanzen gewährleisten. Dabei unterstützt sie alle gängigen Datenformate wie Zahlen, Daten, Zeichenketten und auch Verknüpfungen (sogenannte Links) zwischen Objekten.
 
 \subsubsection{Klassen und Schemata}
 % Erlaubt die Nutzung von Klassen (wie Tabelle in einer relationalen Datenbank)
+% Ermöglichen die Definition von Feldern
 % Können Felder haben oder Schemalos sein. Können auch aus mehreren Klassen sich zusammensetzen
+
+Klassen in OrientDB sind Strukturinformationen über die einzupflegenden Daten. Datensätze in der Datenbank müssen zwingend in eine Klasse eingeordnet werden. Je nach gewählter Strukturierung kann den Klassen ein Schema in Form von Eigenschaften und Datentypen zugeordnet werden. Dies ist optional, kann aber auch  teilweise
 
 \subsubsection{Cluster}
 % Jede Klasse bekommt zwangsweise ein Cluster
