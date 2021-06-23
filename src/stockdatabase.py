@@ -12,8 +12,6 @@ class IndexRateDay(object):
         self.close = close
         self.adj_close = adj_close
         self.volume = volume
-        self.isin = isin
-        self.region = region
 
 
 class StockDatabase(object):
@@ -46,39 +44,53 @@ class StockDatabase(object):
             "CREATE CLASS " + self.table_index_values_name + " IF NOT EXISTS")
         self.client.command("CREATE PROPERTY " +
                             self.table_index_values_name + ".Date DATE")
-        self.client.command("CREATE PROPERTY " +
-                            self.table_index_values_name + ".ISIN STRING")
-        self.client.command("CREATE INDEX isinDate ON " +
-                            self.table_index_values_name + " (ISIN, Date) UNIQUE")
 
     def query_index_values(self, isin, date_start=None, date_end=None, limit=-1):
-        part_date_start = "" if date_start == None else ' AND Date >= "' + \
+        cluster_name = "index_" + isin
+
+        part_date_start = "" if date_start == None else ' Date >= "' + \
             self.__get_date_string(date_start) + '" '
 
-        part_date_end = "" if date_end == None else ' AND Date < "' + \
+        part_date_end = "" if date_end == None else ' Date < "' + \
             self.__get_date_string(date_end) + '" '
 
-        query_string = 'SELECT FROM ' + self.table_index_values_name + ' WHERE ISIN = "' + \
-            isin + '" ' + part_date_start + part_date_end + ' ORDER BY Date ASC'
+        part_where = ""
+
+        if part_date_start != "" and part_date_end != "":
+            part_where = "WHERE " + part_date_start + " AND " + part_date_end
+        elif part_date_start != "" and part_date_end == "":
+            part_where = "WHERE " + part_date_start
+        elif part_date_start == "" and part_date_end != "":
+            part_where = "WHERE " + part_date_end
+
+        query_string = 'SELECT FROM CLUSTER:' + cluster_name + \
+            ' ' + part_where + ' ORDER BY Date ASC'
 
         result = [x.oRecordData for x in self.client.query(
             query_string, limit)]
         result = list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"], (x["Adj_Close"]
-                      if "Adj_Close" in x else x["Close"]), x["Volume"], x["ISIN"], x["Region"]) for x in result])
+                      if "Adj_Close" in x else x["Close"]), x["Volume"]) for x in result])
         return sorted(result, key=operator.attrgetter('date'))
 
-    def insert_index_values(self, df, isin, region):
-        self.__prepare_index_data(df, isin, region)
+    def insert_index_values(self, df, isin):
+        self.__prepare_index_data(df)
+
+        cluster_name = "index_" + isin
+
+        self.client.command(
+            "ALTER CLASS " + self.table_index_values_name + " ADDCLUSTER " + cluster_name)
+
         for index, row in df.iterrows():
             insert_command = "INSERT INTO " + \
-                self.table_index_values_name + " CONTENT " + row.to_json()
+                self.table_index_values_name + " CLUSTER " + \
+                cluster_name + " CONTENT " + row.to_json()
             self.client.command(insert_command)
 
-    def __prepare_index_data(self, df, isin, region):
+    def __prepare_index_data(self, df):
         df.columns = df.columns.str.replace(' ', '_')
         df.dropna(inplace=True)
-        df["ISIN"] = isin
-        df["Region"] = region
+        # df["ISIN"] = isin
+        # df["Region"] = region
 
     def __get_date_string(self, date):
         return date if isinstance(date, str) else date.strftime('%Y-%m-%d')
