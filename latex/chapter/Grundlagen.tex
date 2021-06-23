@@ -32,6 +32,8 @@ Ein Aktienindex gibt die Wertentwicklung einer ganzen Gruppe von Aktien wider. S
 
 Die Effizienzmarkthypothese von Fama beschreibt, dass der Kapitalmarkt effizient ist, wenn alle relevanten Informationen allen Marktteilnehmern sofort zur Verfügung stehen und somit das Angebot und die Nachfrage der Marktteilnehmer direkt beeinflussen. Alle Marktteilnehmer handeln nach dieser Hypothese rational. Effizient bedeutet dann, dass bei der Veröffentlichung neuer Informationen über ein Unternehmen sich die Preise einer Aktie sofort anpassen um den korrekten Wert widerzuspiegeln. Diese Theorie beschreibt einen perfekten Markt wie er in der Realität nicht existiert. Untersuchungen von ... zeigten, dass neben zufälligen Preisentwicklungen auch externe Faktoren, wie das Wetter, einen Einfluss haben und auch periodische Anomalien auftreten, die der strikten Hypothese widersprechen. Darunter gibt es jährlich, saisonal, und wöchentlich auftretende allgemeine Schwankungen. Im Rahmen dieser Arbeit soll sich vor allem auf den \enquote{Weekend Effect} konzentriert werden. Dieser besagt, dass die Kurse am Montag im Vergleich zu den anderen Wochentagen unterdurchschnittlich ausfallen. Zu dieser Erscheinung gibt es viele Untersuchungen und Vermutungen aber keine wissenschaftlich belegte Erklärung.
 
+% Erwähnen warum der Weekend Effect auftreten könnte?
+
 \subsection{NoSQL}
 % https://www.springerprofessional.de/nosql-databases/19181680?searchResult=1.nosql&searchBackButton=true&fulltextView=true
 % https://www.springerprofessional.de/a-comparative-study-of-nosql-databases/18759118?searchResult=10.nosql&searchBackButton=true&fulltextView=true
@@ -75,6 +77,9 @@ OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. S
 % Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
 
 \subsubsection{Datenabfragesprache}
+% http://orientdb.com/docs/2.2.x/Commands.html
+% http://orientdb.com/docs/2.2.x/SQL.html
+
 % SQL als Basis Syntax da dies sehr bekannt und oft genutzt ist
 % Ohne Joins dafür mit neuen Komponenten
 % Relationships durch LINKS dargestellt
@@ -82,6 +87,8 @@ OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. S
 % Select, Insert, Update, Delete
 
 Statt eine neue Abfragesprache zu entwerfen nutzt OrientDB die aus relationalen Datenbanksystemen bekannte \gls{SQL}. Darunter die Standardschlüsselworte \texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}. Die Syntax wird dabei erweitert. So können über die Kommandos \texttt{CREATE CLASS} und \texttt{ALTER CLASS} Klassen erstellt und bearbeitet werden. Außerdem kann den Klassen über die \texttt{PROPERTY} Befehle ein Schema vorgegeben werden, bei dem auch die konkreten Datentypen definiert werden können. Zudem führt die Datenbank eine komplett neue Reihe an Befehlen für Eckpunkte (\texttt{VERTICES}) und Kanten (\texttt{EDGES}) ein um die Arbeit mit Graphen zu ermöglichen. Auch können die Befehle für Cluster genutzt werden, um diese zu verwalten oder eine Suche auf einzelne Cluster zu beschränken.
+
+% Eventuell noch wie die LINKS aufgebaut sind?
 
 \subsubsection{Web Interface}
 
