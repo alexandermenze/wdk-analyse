@@ -67,21 +67,25 @@ OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. S
 % Erlaubt die Nutzung von Klassen (wie Tabelle in einer relationalen Datenbank)
 % Können Felder haben oder Schemalos sein. Können auch aus mehreren Klassen sich zusammensetzen
 
-
-\subsubsection{Datenabfragesprache}
-% SQL als Basis Syntax
-% Ohne Joins dafür mit neuen Komponenten
-
-\subsubsection{Clusters}
+\subsubsection{Cluster}
 % Jede Klasse bekommt zwangsweise ein Cluster
 % Man kann konkret nach Clustern filtern
 % Cluster sind physisch getrennte Einheiten
 % Können auch auf unterschiedlichen Systemen liegen
 % Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
 
+\subsubsection{Datenabfragesprache}
+% SQL als Basis Syntax da dies sehr bekannt und oft genutzt ist
+% Ohne Joins dafür mit neuen Komponenten
+% Relationships durch LINKS dargestellt
+% Einfache Abfrage verschachtelter Eigenschaften mit dot notation
+% Select, Insert, Update, Delete
+
+Statt eine neue Abfragesprache zu entwerfen nutzt OrientDB die aus relationalen Datenbanksystemen bekannte \gls{SQL}. Darunter die Standardschlüsselworte \texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}. Die Syntax wird dabei erweitert. So können über die Kommandos \texttt{CREATE CLASS} und \texttt{ALTER CLASS} Klassen erstellt und bearbeitet werden. Außerdem kann den Klassen über die \texttt{PROPERTY} Befehle ein Schema vorgegeben werden, bei dem auch die konkreten Datentypen definiert werden können. Zudem führt die Datenbank eine komplett neue Reihe an Befehlen für Eckpunkte (\texttt{VERTICES}) und Kanten (\texttt{EDGES}) ein um die Arbeit mit Graphen zu ermöglichen. Auch können die Befehle für Cluster genutzt werden, um diese zu verwalten oder eine Suche auf einzelne Cluster zu beschränken.
+
 \subsubsection{Web Interface}
 
-\subsubsection{Python Bibliothek}
+\subsubsection{Bibliotheken}
 
 \subsection{Datenquelle für Börsendaten}
 % https://www.springerprofessional.de/data-collection-presentation-and-yahoo-finance/11237520?searchResult=1.yahoo%20finance&searchBackButton=true&fulltextView=true
