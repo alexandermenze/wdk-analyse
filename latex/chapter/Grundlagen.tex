@@ -12,6 +12,8 @@
 
 Aktien sind Unternehmensanteile. Investoren können sich über Aktien finanziell an Unternehmen beteiligen. Die öffentlichen Anteile können an einer Börse gehandelt werden. Mit dem Besitz einer Aktie bekommt der Aktionär ein Stimmrecht auf der Hauptversammlung und wird an Gewinnausschüttungen beteiligt. Der Preis oder auch Kurs einer Aktie schwankt in der Regel während der Öffnungszeiten der Börse. Er setzt sich aus Angebot und Nachfrage zusammen. Wichtige Werte sind die Tagesöffnungs- und Tagesschlusskurse. Diese geben den Kurs jeweils zur Öffnung und zum Schluss eines Tages an einer Börse an.
 
+% Tagesschlusskurs != nächster Tag Öffnungskurs
+
 \subsubsection{Aktienindizes}
 % DAX Berechnung alle 15 Sekunden - https://www.springerprofessional.de/equities-and-equity-indices/16861122?searchResult=2.equity%20indices&searchBackButton=true&fulltextView=true 
 % DAX erfüllt Informationsfunktion - https://www.springerprofessional.de/geld-und-vermoegensanlage/19054466?searchResult=20.equity%20index&searchBackButton=true
@@ -65,19 +67,30 @@ Die vier am häufigsten vertretenen Datenmodelle sind \enquote{Key-Value}, \enqu
 
 OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. Sie wurde in Java geschrieben und ist damit komplett plattformunabhängig. Als Datenmodell können sowohl Dokumente als auch Graphen verwendet werden. OrientDB erlaubt bei der Nutzung von Dokumenten sowohl Schemalose als auch Schemabehaftete Modi. Des Weiteren unterstützt sie die typischen Fähigkeiten einer NoSQL wie Fehlertoleranz, Clustering, einfache horizontale Skalierung und Datenreplikation über mehrere Instanzen. Dabei soll die Datenbank wenig Arbeitsspeicher nutzen und erlaubt zudem Sicherheitsfeatures wie die Verschlüsselung der Daten auf der Festplatte. Im Gegensatz zu anderen NoSQL Datenbanken kann OrientDB eine transaktionale Sicherheit über mehrere Instanzen gewährleisten. Dabei unterstützt sie alle gängigen Datenformate wie Zahlen, Daten, Zeichenketten und auch Verknüpfungen (sogenannte Links) zwischen Objekten.
 
-\subsubsection{Klassen und Schemata}
+\subsubsection{Klassen und Datenbankindizes}
 % Erlaubt die Nutzung von Klassen (wie Tabelle in einer relationalen Datenbank)
 % Ermöglichen die Definition von Feldern
 % Können Felder haben oder Schemalos sein. Können auch aus mehreren Klassen sich zusammensetzen
 
-Klassen in OrientDB sind Strukturinformationen über die einzupflegenden Daten. Datensätze in der Datenbank müssen zwingend in eine Klasse eingeordnet werden. Je nach gewählter Strukturierung kann den Klassen ein Schema in Form von Eigenschaften und Datentypen zugeordnet werden. Dies ist optional, kann aber auch  teilweise
+Klassen in OrientDB sind Strukturinformationen über die einzupflegenden Daten. Sie können mit Tabellen in relationalen Datenbanken verglichen werden. Datensätze in der Datenbank müssen zwingend in eine Klasse eingeordnet werden. Je nach gewählter Strukturierung kann den Klassen ein Schema in Form von Eigenschaften und Datentypen zugeordnet werden. Dieses Schema ist optional und muss nicht zwingend alle Eigenschaften erfassen. Dadurch können Daten strukturiert, halb-strukturiert oder auch unstrukturiert gespeichert werden. Nachdem eine Klasse erstellt wurde, können auf den Eigenschaften einer Klasse Datenbankindizes erstellt werden. Es existieren drei Arten die direkt in OrientDB integriert sind:
+
+\begin{itemize}
+    \item SB-Tree Index: Standardtyp der eine gute Performance liefert und auch bei \gls{SQL} Bereichssuchen genutzt werden kann.
+    \item Hash Index: Bietet einen sehr schnellen Zugriff bei punktuellen Abfragen einzelner Datensätze. Kann nicht mit Bereichssuchen genutzt werden.
+    \item Auto Sharding Index: Nutzt intern mehrere Hash Indizes um die Abfrage zu parallelisieren.
+\end{itemize}
 
 \subsubsection{Cluster}
+% http://orientdb.com/docs/2.2.x/Distributed-Architecture.html
+% http://orientdb.com/docs/2.2.x/Tutorial-Clusters.html
+
 % Jede Klasse bekommt zwangsweise ein Cluster
 % Man kann konkret nach Clustern filtern
 % Cluster sind physisch getrennte Einheiten
 % Können auch auf unterschiedlichen Systemen liegen
 % Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
+
+Jede Klasse in der Datenbank erhält ein Cluster. Cluster sind physisch getrennte Einheiten. Das können mehrere Speicherorte auf einer Festplatte aber auch komplett getrennte Systeme sein. Da verschiedene Cluster parallel bearbeitet oder durchsucht werden können, kann durch die Nutzung dank Parallelisierung die Leistung der Datenbank gesteigert werden. Cluster können vom System verwaltet oder auch manuell angelegt werden. Wenn die Cluster intelligent gewählt werden, kann damit die Suche nach Daten weiter optimiert werden. Beispielsweise könnten Rechnungen nach ihrem Erstellungsjahr jeweils in ein eigenes Cluster einsortiert werden. Wenn dann nach Rechnungen in einem bestimmten Zeitraum gesucht wird, kann die Datenmenge als erstes über das Jahr stark eingeschränkt werden. Dies kann performanter als die Nutzung eines Index sein.
 
 \subsubsection{Datenabfragesprache}
 % http://orientdb.com/docs/2.2.x/Commands.html
