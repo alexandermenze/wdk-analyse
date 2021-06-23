@@ -45,15 +45,39 @@ Die Effizienzmarkthypothese von Fama beschreibt, dass der Kapitalmarkt effizient
 
 Angetrieben durch die hohen Anforderungen an Skalierung und Performance entwickelten sich in den späten 80er Jahren die sogenannten NoSQL Datenbanken. Markant ist vor allem die Nutzung eines nicht-relationalen Datenbankmodells. Bei diesen muss im Vorhinein kein festes Schema festgelegt werden, wodurch die Administrationsaufgaben minimiert werden. Außerdem unterstützen viele dieser Datenbanken eine Replikation auf mehrere kleine Instanzen und damit auch eine erhöhte Ausfallsicherheit und verbesserte Lastenverteilung. Um diese Ziele zu erreichen verzichten NoSQL Datenbanken häufig auf die transaktionale Sicherheit die bei relationalen Datenbanken üblich ist. Da dies nicht die optimale Lösung für jedes System ist, stellen NoSQL Datenbanken keinen Ersatz oder eine Verbesserung, sondern eine Alternative für spezielle Anwendungsfälle, dar.
 
-Die vier am häufigsten vertretenen Datenmodelle sind \enquote{Key-Value}, \enquote{Column-oriented}, \enquote{Document} und \enquote{Graph}. Der Key-Value Speicher funktioniert ähnlich wie ein Hash-Table. Jedem Eintrag wird ein eindeutiger Schlüssel zugeteilt. Dabei kann der Wert dahinter ein \gls{JSON} Dokument sein. Bei dem Column-oriented Datenmodell werden die Daten in Tabellen gespeichert, jedoch in einem anderen technischen Format als bei einer relationalen Datenbank. Dieses soll vor allem die Lese-Zugriffe auf den Speicher deutlich reduzieren. In den dokumentenbasierten NoSQL Datenbanken können unstrukturierte Daten ohne festes Schema gespeichert werden. Jeder Datensatz ist dabei ein unabhängiges Dokument. Eine Graph-Datenbank erlaubt das Speichern von großen Datenmengen und Verknüpfung dieser Datensätze über Beziehungen.
+Die vier am häufigsten vertretenen Datenmodelle sind \enquote{Key-Value}, \enquote{Column-oriented}, \enquote{Document} und \enquote{Graph}. Der Key-Value Speicher funktioniert ähnlich wie ein Hash-Table. Jedem Eintrag wird ein eindeutiger Schlüssel zugeteilt. Dabei kann der Wert dahinter ein \gls{JSON} Dokument sein. Bei dem Column-oriented Datenmodell werden die Daten in Tabellen gespeichert, jedoch in einem anderen technischen Format als bei einer relationalen Datenbank. Dieses soll vor allem die Lese-Zugriffe auf den Speicher deutlich reduzieren. In den dokumentenbasierten NoSQL Datenbanken können unstrukturierte Daten ohne festes Schema gespeichert werden. Jeder Datensatz ist dabei ein unabhängiges Dokument. Bei Graph-Datenbanken besteht das Datenmodell aus Eckpunkten die über Kanten miteinander verbunden werden. Das erlaubt es große verknüpfte Graph-Strukturen darzustellen.
 
 \subsection{OrientDB}
+% https://en.wikipedia.org/wiki/OrientDB
+% http://orientdb.com/docs/2.2.x/Transactions.html
 
-\subsubsection{Unterstützte Datenmodelle}
+% Schema less, mixed, full
+% erlaubt erweitertes SQL als Abfragesprache
+% verschiede indexing methoden
+% open source (and commercial version)
+% fehlertoleranz, clustering, sharding, horizontal scaling, replication
+% fully ACID
+% sehr schmal (nur 512 mb ram)
+% encrypting stored content
+% 3rd party plugins
+
+OrientDB ist eine open-source NoSQL Datenbank die im Jahr 2010 erschienen ist. Sie wurde in Java geschrieben und ist damit komplett plattformunabhängig. Als Datenmodell können sowohl Dokumente als auch Graphen verwendet werden. OrientDB erlaubt bei der Nutzung von Dokumenten sowohl Schemalose als auch Schemabehaftete Modi. Des Weiteren unterstützt sie die typischen Fähigkeiten einer NoSQL wie Fehlertoleranz, Clustering, einfache horizontale Skalierung und Datenreplikation über mehrere Instanzen. Dabei soll die Datenbank wenig Arbeitsspeicher nutzen und erlaubt zudem Sicherheitsfeatures wie die Verschlüsselung der Daten auf der Festplatte. Im Gegensatz zu anderen NoSQL Datenbanken kann OrientDB eine transaktionale Sicherheit über mehrere Instanzen gewährleisten.
 
 \subsubsection{Klassen und Schemata}
+% Erlaubt die Nutzung von Klassen (wie Tabelle in einer relationalen Datenbank)
+% Können Felder haben oder Schemalos sein. Können auch aus mehreren Klassen sich zusammensetzen
+
 
 \subsubsection{Datenabfragesprache}
+% SQL als Basis Syntax
+% Ohne Joins dafür mit neuen Komponenten
+
+\subsubsection{Clusters}
+% Jede Klasse bekommt zwangsweise ein Cluster
+% Man kann konkret nach Clustern filtern
+% Cluster sind physisch getrennte Einheiten
+% Können auch auf unterschiedlichen Systemen liegen
+% Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
 
 \subsubsection{Web Interface}
 
