@@ -21,10 +21,10 @@ class TimeRange(object):
         self.end = end
 
 
-def create_weekday_statistic(data):
+def create_weekday_statistic(data, close_last_to_open=True):
     return list([
-        WeekdayStatistic(i, __count_days_by_weekday(data, i), __count_days_pos_neg(data, i, True), __count_days_pos_neg(
-            data, i, False), __sum_value_changes(data, i, True), __sum_value_changes(data, i, False))
+        WeekdayStatistic(i, __count_days_by_weekday(data, i), __count_days_pos_neg(data, i, True, close_last_to_open), __count_days_pos_neg(
+            data, i, False, close_last_to_open), __sum_value_changes(data, i, True, close_last_to_open), __sum_value_changes(data, i, False, close_last_to_open))
         for i
         in range(0, 5)
     ])
@@ -35,27 +35,28 @@ def __count_days_by_weekday(data, weekday):
     return len([s for s in data if s.date.weekday() == weekday])
 
 
-def __count_days_pos_neg(data, weekday, count_positive):
+def __count_days_pos_neg(data, weekday, count_positive, close_last_to_open):
     # Count positive or negative days in dataset
 
-    last_close = 0
+    last_value = 0
     days = 0
 
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
-            curr_value = d.adj_close - last_close if last_close != 0 else d.adj_close - d.open
+            curr_value = d.adj_close - \
+                last_value if last_value != 0 and close_last_to_open else d.adj_close - d.open
 
             if count_positive and curr_value >= 0:
                 days += 1
             elif not count_positive and curr_value < 0:
                 days += 1
 
-        last_close = d.adj_close
+        last_value = d.adj_close
 
     return days
 
 
-def __sum_value_changes(data, weekday, positive_change):
+def __sum_value_changes(data, weekday, positive_change, close_last_to_open):
     # Sum the total positive or negative value changes
 
     last_close = 0
@@ -63,7 +64,8 @@ def __sum_value_changes(data, weekday, positive_change):
 
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
-            curr_value = d.adj_close - last_close if last_close != 0 else d.adj_close - d.open
+            curr_value = d.adj_close - \
+                last_close if last_close != 0 and close_last_to_open else d.adj_close - d.open
 
             if positive_change and curr_value >= 0:
                 value += curr_value
