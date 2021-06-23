@@ -51,6 +51,8 @@ Angetrieben durch die hohen Anforderungen an Skalierung und Performance entwicke
 
 Die vier am häufigsten vertretenen Datenmodelle sind \enquote{Key-Value}, \enquote{Column-oriented}, \enquote{Document} und \enquote{Graph}. Der Key-Value Speicher funktioniert ähnlich wie ein Hash-Table. Jedem Eintrag wird ein eindeutiger Schlüssel zugeteilt. Dabei kann der Wert dahinter ein \gls{JSON} Dokument sein. Bei dem Column-oriented Datenmodell werden die Daten in Tabellen gespeichert, jedoch in einem anderen technischen Format als bei einer relationalen Datenbank. Dieses soll vor allem die Lese-Zugriffe auf den Speicher deutlich reduzieren. In den dokumentenbasierten NoSQL Datenbanken können unstrukturierte Daten ohne festes Schema gespeichert werden. Jeder Datensatz ist dabei ein unabhängiges Dokument. Bei Graph-Datenbanken besteht das Datenmodell aus Eckpunkten die über Kanten miteinander verbunden werden. Das erlaubt es große verknüpfte Graph-Strukturen darzustellen.
 
+% Eventuell ACID erklären
+
 \subsection{OrientDB}
 % https://en.wikipedia.org/wiki/OrientDB
 % http://orientdb.com/docs/2.2.x/Transactions.html
@@ -119,7 +121,7 @@ Statt eine neue Abfragesprache zu entwerfen nutzt OrientDB die aus relationalen 
 % Export der Datenbank
 % technische Informationen über die Klassen und dazu die Cluster und Anzahl Records
 
-Die Datenbank bietet ein Web Interface, das OrientDB Studio, für die einfache Bedienung.
+Die Datenbank bietet ein Web Interface, das OrientDB Studio, für die einfache Bedienung. Mit diesem können \gls{SQL}-Abfragen ausgeführt und Dokumente im Browser bearbeitet werden. Wenn das Graph Modell genutzt wird, können sich hier auch die Graphen visualisiert werden. Außerdem lassen sich Verwaltungsaufgaben wie das Erstellen von Klassen und deren Eigenschaften, Clustern und Indizes über das Web Interface erledigen. Zudem werden weitere technische Einblicke in die Datenbank- und Clustergröße sowie die Anzahl der enthaltenen Datensätze gegeben. Datenbankeinstellungen wie die Standardsprache und das Datumsformat können hier ebenfalls angepasst werden.
 
 \subsubsection{Schnittstellen}
 % http://orientdb.com/docs/2.2.x/Programming-Language-Bindings.html
