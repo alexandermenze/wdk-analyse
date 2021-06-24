@@ -5,7 +5,9 @@
 
 % Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
 
-\subsection{Problemverständnis}
+Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie es fachlich gelöst werden kann. Dazu gehört auch die Auswahl der Werkzeuge für die Umsetzung. Anschließend folgt die Strukturierung und Planung der Daten. Dies beinhaltet die Erstellung einer begründeten Datenstruktur. In dem Kapitel der \nameref{sec:datenvorbereitung} geht es dann um die Beschaffung, das Einlesen und Aufbereiten der Quelldaten. Danach kann mit den Daten in der Datenbank die Auswertung durchgeführt werden.
+
+\subsection{Problemverständnis und Planung}
 % Die konkreten Berechnungen hier einfügen
 % Welche Daten werden benötigt?
 % Welche Werkzeuge sollen genutzt werden (Wie sollen die Daten angezeigt werden um das Problem zu erläutern?)
@@ -13,6 +15,7 @@
 
 % anhand von großen Indizes um die Marktentwicklung insgesamt zu betrachten und nicht auf einzelne Aktien zu sehen
 % In verschiedenen Ländern und Regionen (ob es Unterschiede gibt)
+% Das soll über mehrere Zeiträume analysiert werden um wirklich eine Aussage treffen zu können
 % Dazu werden die Daten historisch analysiert (soweit wie diese zurückgehen)
 % Benötigt werden die täglichen Kursentwicklungen
 % Berechnet wird die Kursentwicklung eines Tages mit der Formel (Schlusskurs Tag - Schlusskurs letzter Tag)
@@ -25,6 +28,7 @@
 % Adj_Close vs Close
 
 \subsection{Datenvorbereitung}
+\label{sec:datenvorbereitung}
 % Einlesen der Daten und Aufbereitung
 %   Behandeln von Ausreißern und fehlenden Daten zwischen den Datensätzen
 %   Wie geht man mit unterschiedlicher Anzahl Wochentagen um? (Normalisierung)
