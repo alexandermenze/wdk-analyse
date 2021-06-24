@@ -4,14 +4,10 @@ import pyorient
 
 
 class IndexRateDay(object):
-    def __init__(self, date=None, open=None, high=None, low=None, close=None, adj_close=None, volume=None, isin=None, region=None):
+    def __init__(self, date=None, open=None, close=None):
         self.date = date
         self.open = open
-        self.high = high
-        self.low = low
         self.close = close
-        self.adj_close = adj_close
-        self.volume = volume
 
 
 class StockDatabase(object):
@@ -68,8 +64,8 @@ class StockDatabase(object):
 
         result = [x.oRecordData for x in self.client.query(
             query_string, limit)]
-        result = list([IndexRateDay(x["Date"], x["Open"], x["High"], x["Low"], x["Close"], (x["Adj_Close"]
-                      if "Adj_Close" in x else x["Close"]), x["Volume"]) for x in result])
+        result = list([IndexRateDay(x["Date"], x["Open"], x["Close"])
+                      for x in result])
         return sorted(result, key=operator.attrgetter('date'))
 
     def insert_index_values(self, df, isin):
@@ -88,9 +84,13 @@ class StockDatabase(object):
 
     def __prepare_index_data(self, df):
         df.columns = df.columns.str.replace(' ', '_')
+
+        if "Adj_Close" in df.columns:
+            df["Close"] = df["Adj_Close"]
+
+        df.drop(['High', 'Low', 'Adj_Close', 'Volume'],
+                axis=1, errors='ignore', inplace=True)
         df.dropna(inplace=True)
-        # df["ISIN"] = isin
-        # df["Region"] = region
 
     def __get_date_string(self, date):
         return date if isinstance(date, str) else date.strftime('%Y-%m-%d')

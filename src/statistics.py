@@ -1,3 +1,4 @@
+from datetime import time
 import numpy as np
 import operator
 
@@ -19,6 +20,13 @@ class TimeRange(object):
         self.name = name
         self.start = start
         self.end = end
+
+
+class IndexTimeRanges(object):
+    def __init__(self, index_name, isin, time_ranges):
+        self.index_name = index_name
+        self.isin = isin
+        self.time_ranges = time_ranges
 
 
 def create_weekday_statistic(data, close_last_to_open=True):
@@ -43,15 +51,15 @@ def __count_days_pos_neg(data, weekday, count_positive, close_last_to_open):
 
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
-            curr_value = d.adj_close - \
-                last_value if last_value != 0 and close_last_to_open else d.adj_close - d.open
+            curr_value = d.close - \
+                last_value if last_value != 0 and close_last_to_open else d.close - d.open
 
             if count_positive and curr_value >= 0:
                 days += 1
             elif not count_positive and curr_value < 0:
                 days += 1
 
-        last_value = d.adj_close
+        last_value = d.close
 
     return days
 
@@ -64,14 +72,14 @@ def __sum_value_changes(data, weekday, positive_change, close_last_to_open):
 
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
-            curr_value = d.adj_close - \
-                last_close if last_close != 0 and close_last_to_open else d.adj_close - d.open
+            curr_value = d.close - \
+                last_close if last_close != 0 and close_last_to_open else d.close - d.open
 
             if positive_change and curr_value >= 0:
                 value += curr_value
             elif not positive_change and curr_value < 0:
                 value += curr_value
 
-        last_close = d.adj_close
+        last_close = d.close
 
     return value
