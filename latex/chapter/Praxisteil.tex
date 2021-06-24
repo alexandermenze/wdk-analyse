@@ -87,12 +87,12 @@ Um die Einpflege der Daten zu automatisieren, wurde eine zweite Konfigurationsda
     \end{lstlisting}
 \end{figure}
 
-Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Dies soll nach dem \gls{ETL} Prozess geschehen. Das bedeutet zuerst werden die Daten aus der Ursprungsquelle extrahiert. Dann werden sie transformiert, also auf die spätere Nutzung angepasst. Als letztes werden die Daten in die Zieldatenbank geschrieben. Um die Daten zuerst auszulesen, wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Dafür wird durch die Liste der Datendateien in der Konfigurationsdatei iteriert. Jede Datei wird über den Befehl \texttt{pandas.read_csv(path)} als DataFrame in den Arbeitsspeicher geladen.
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Dies soll nach dem \gls{ETL} Prozess geschehen. Das bedeutet zuerst werden die Daten aus der Ursprungsquelle extrahiert. Dann werden sie transformiert, also auf die spätere Nutzung angepasst. Als letztes werden die Daten in die Zieldatenbank geschrieben. Um die Daten zuerst auszulesen, wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Dafür wird durch die Liste der Datendateien in der Konfigurationsdatei iteriert. Jede Datei wird über den Befehl \texttt{pandas.read\_csv(path)} als DataFrame in den Arbeitsspeicher geladen. Die Daten können dann wie in Listing \ref{list:transformation} transformiert werden. Dazu gehört die Entfernung der Leerzeichen aus den Spaltennamen, wie in Zeile eins dargestellt. Diese sind in OrientDB nicht erlaubt. Außerdem sollen, wenn verfügbar, immer die bereinigten Schlusskurse verwendet werden. Dafür werden sie entfernt.
 
 % Entscheidung Cluster, Index
 
 \begin{figure}[!htb]
-    \begin{lstlisting}[caption=Konfigeintrag des DAX, label=list:config_dax]
+    \begin{lstlisting}[caption=Transformation eines DataFrames, label=list:transformation]
 df.columns = df.columns.str.replace(' ', '_')
 
 if "Adj_Close" in df.columns:
@@ -108,5 +108,6 @@ df.dropna(inplace=True)
 % Generierung der Auswertung mit Verweis auf das Problemverständnis
 % Erstellung der Grafiken
 % Zahlenoutput der Auswertung
+% Problematisch wenn Daten fehlen? null, null, null etc.
 
 \clearpage
