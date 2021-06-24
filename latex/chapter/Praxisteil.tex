@@ -5,7 +5,7 @@
 
 % Optimierung: Jeden Index in ein eigenes Cluster, dann Index weg
 
-Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie es fachlich gelöst werden kann. Dazu gehört auch die Auswahl der Werkzeuge für die Umsetzung. Anschließend folgt die Strukturierung und Planung der Daten. Dies beinhaltet die Erstellung einer begründeten Datenstruktur. In dem Kapitel der \nameref{sec:datenvorbereitung} geht es dann um die Beschaffung, Aufbereitung und das Einlesen der Quelldaten in die Datenbank. Danach wird die Auswertung durchgeführt.
+Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie es fachlich gelöst werden kann. Dazu gehört auch die Auswahl der Werkzeuge für die Umsetzung. Anschließend folgt die Strukturierung und Planung der Daten. Dies beinhaltet die Erstellung einer begründeten Datenstruktur. In dem Kapitel der \nameref{sec:datenvorbereitung} geht es dann um die Beschaffung, Aufbereitung und das Einlesen der Quelldaten in die Datenbank. Abschließend wird die Auswertung durchgeführt.
 
 \subsection{Problemverständnis und Planung}
 % Die konkreten Berechnungen hier einfügen
@@ -20,13 +20,18 @@ Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie e
 % Benötigt werden die täglichen Kursentwicklungen
 % Berechnet wird die Kursentwicklung eines Tages mit der Formel (Schlusskurs Tag - Schlusskurs letzter Tag)
 % Das ganze kann dann addiert werden nach Wochentagen um eine Gesamtstatistik zu erhalten
-% Daten kommen von yahoo Finance
+
+In dieser Auswertung soll untersucht werden ob der Weekend Effect in verschiedenen Regionen aufgetreten ist. Falls er existiert, ist ebenfalls interessant ob der Effekt je nach Zeitraum in der Vergangenheit unterschiedlich ausgeprägt war. Dafür werden historische Daten von yahoo Finance mit der Programmiersprache Python und der Datenbank OrientDB ausgewertet. Um bei der Auswertung möglichst die gesamte Entwicklung eines Marktes einzufangen und nicht Anomalien in den Kursverläufen einzelner Aktien zu untersuchen werden dafür ausschließlich Daten von breiter aufgestellten Aktienindizes verwendet. Benötigt werden dazu jeweils tagesaktuelle Daten
+
+% Bibliotheken
 
 \subsection{Datenverständnis}
 % Datenstruktur und Format, Menge, Zeitauflösung etc.
 % Was ist die ISIN?
 % Wie und warum habe ich aufgebaut
 % Adj_Close vs Close
+
+% Daten kommen von yahoo Finance
 
 \subsection{Datenvorbereitung}
 \label{sec:datenvorbereitung}
