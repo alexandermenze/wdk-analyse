@@ -87,9 +87,8 @@ Um die Einpflege der Daten zu automatisieren, wurde eine zweite Konfigurationsda
     \end{lstlisting}
 \end{figure}
 
-Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Dies soll nach dem \gls{ETL} Prozess geschehen. Das bedeutet zuerst werden die Daten aus der Ursprungsquelle extrahiert. Dann werden sie transformiert, also auf die spätere Nutzung angepasst. Als letztes werden die Daten in die Zieldatenbank geschrieben. Um die Daten zuerst auszulesen, wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Dafür wird durch die Liste der Datendateien in der Konfigurationsdatei iteriert. Jede Datei wird über den Befehl \texttt{pandas.read\_csv(path)} als DataFrame in den Arbeitsspeicher geladen. Die Daten können dann wie in Listing \ref{list:transformation} transformiert werden. Dazu gehört die Entfernung der Leerzeichen aus den Spaltennamen, wie in Zeile eins dargestellt. Diese sind in OrientDB nicht erlaubt. Außerdem sollen, wenn verfügbar, immer die bereinigten Schlusskurse verwendet werden. Dafür werden sie entfernt.
-
-% Entscheidung Cluster, Index
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Dies soll nach dem \gls{ETL} Prozess geschehen. Das bedeutet zuerst werden die Daten aus der Ursprungsquelle extrahiert. Dann werden sie transformiert, also auf die spätere Nutzung angepasst. Als letztes werden die Daten in die Zieldatenbank geschrieben. Um die Daten zuerst auszulesen, wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Dafür wird durch die Liste der Datendateien in der Konfigurationsdatei iteriert. Jede Datei wird über den Befehl \texttt{pandas.read\_csv(path)} als DataFrame in den Arbeitsspeicher geladen. Die Daten können dann wie in Listing \ref{list:transformation} transformiert werden. Dazu gehört die Entfernung der Leerzeichen aus den Spaltennamen, wie in Zeile eins dargestellt. Diese sind in OrientDB nicht erlaubt. Außerdem sollen, wenn verfügbar, immer die bereinigten Schlusskurse verwendet werden. Dafür werden die normalen Schlusskurse mit diesen in Zeile drei und vier überschrieben. Danach können dann alle nicht benötigten Spalten (Maximum, Minimum, doppelter bereinigter Schlusskurs und das Handelsvolumen) entfernt werden. Als letztes werden mit dem Befehl \texttt{dropna} alle Datensätze entfernt die einen oder mehrere fehlende Werte haben. Dies kommt bei den Daten von yahoo Finance gelegentlich vor. Mit diesen Daten kann nicht gearbeitet werden.
+% Tagesöffnungskurs bleibt drin
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Transformation eines DataFrames, label=list:transformation]
@@ -102,6 +101,21 @@ df.drop(['High', 'Low', 'Adj_Close', 'Volume'], axis=1, errors='ignore', inplace
 df.dropna(inplace=True)
     \end{lstlisting}
 \end{figure}
+
+Zum Schluss können die Daten in die Datenbank geschrieben werden. Um die Datensätze später wieder mit ihrer \gls{ISIN} zu verknüpfen, muss diese Information auch gespeichert werden. Üblicherweise würde eine neue Eigenschaft an jeden Datensatz angehängt die die \gls{ISIN} beinhaltet. Um die Suchperformance zu verbessern könnte dann ein Datenbankindex auf dieses Feld erstellt werden. Durch die Nutzung von Clustern kann die Dopplung der \gls{ISIN} und die Erstellung eines Index vermieden werden. Dazu wird bei der Speicherung der Datensätze der Befehl in Zeile zwei des Listing \ref{list:cluster_and_load} ausgeführt. Mit diesem wird je \gls{ISIN} ein neues Cluster erstellt. Die Suche nach Datensätzen kann dann sofort optimal auf ein Cluster eingegrenzt werden. Über den \texttt{INSERT} Befehl werden die Dokumente einzeln als \gls{JSON}-Dokumente in das Cluster eingefügt.
+
+\begin{figure}[!htb]
+    \begin{lstlisting}[caption=Erstellung eines Clusters und Einfügen der Datensätze, label=list:cluster_and_load]
+cluster_name = "index_" + isin
+self.client.command("ALTER CLASS " + self.table_index_values_name + " ADDCLUSTER " + cluster_name)
+
+for index, row in df.iterrows():
+    insert_command = "INSERT INTO " + self.table_index_values_name + " CLUSTER " + cluster_name + " CONTENT " + row.to_json()
+    self.client.command(insert_command)
+    \end{lstlisting}
+\end{figure}
+
+% HIER WEITER - ERSTMAL ERSTELLUNG DES INDEX AUF DAS DATUMSFELD GENERELL NOCH IM CODE ERLEDIGEN!!!!!!!!!!!!!
 
 \subsection{Auswertung der Daten}
 % Laden der Daten aus der Datenbank
