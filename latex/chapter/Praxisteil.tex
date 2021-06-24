@@ -62,7 +62,7 @@ Für jeden Handelstag an der jeweils lokalen Börse existiert ein Datensatz. Die
 % Erstellung des Datenbankindex
 % Konfiguration
 
-Um die Daten einlesen zu können musste zuerst die Datenbank aufgesetzt werden. Diese wurde als Docker Container gehostet. Da es Inkompatibilitäten zwischen der Bibliothek PyOrient und der neusten Version der Datenbank gibt, wurde die Version 2.2.35 von OrientDB genutzt. Die Verbindungs- und Anmeldedaten werden zur Laufzeit des Python Skriptes aus einer \gls{YAML}-Konfigurationsdatei geladen. Um die Erstellung zu vereinfachen, wurde die gesamte Erstellung der Datenbank im Quellcode erledigt. Dies ist im Listing \ref{list:create_db} zu sehen. In Zeile eins und zwei wird die Datenbank gelöscht, falls sie existiert. Da hier unabhängige Datensätze ohne Verknüpfungen gespeichert werden sollen, wurde sich für das dokumentenbasierte Modell entschieden. Dies ist in Zeile vier bei der Erstellung der Datenbank zu sehen. Der Parameter \texttt{STORAGE\_TYPE\_PLOCAL} gibt an das der Inhalt auf der Festplatte gespeichert werden soll. Alternativ könnte OrientDB die Daten auch ausschließlich im Arbeitsspeicher halten. Da die Daten allerdings persistent gespeichert werden sollen, wurde hier nicht diese Option gewählt. In Zeile sechs ist die Erstellung der neuen Klasse zu sehen. Die Variable \texttt{self.table\_index\_values\_name} ist ebenfalls in der Konfigurationsdatei definiert und gibt den Namen der Klasse an. Zusätzlich zur Klasse wird hier die Eigenschaft \texttt{Date} mit dem Datentyp \texttt{DATE} definiert. Dies gehört zum Schema der Klasse und wird benötigt, da OrientDB das Datumsfeld sonst als Zeichenkette erstellen würde.
+Um die Daten einlesen zu können musste zuerst die Datenbank aufgesetzt werden. Diese wurde als Docker Container gehostet. Da es Inkompatibilitäten zwischen der Bibliothek PyOrient und der neusten Version der Datenbank gibt, wurde die Version 2.2.35 von OrientDB genutzt. Die Verbindungs- und Anmeldedaten werden zur Laufzeit des Python Skriptes aus einer \gls{YAML}-Konfigurationsdatei geladen. Um die Erstellung der Datenbank zu vereinfachen, wurde sie im Quellcode erledigt. Dies ist im Listing \ref{list:create_db} zu sehen. In Zeile eins und zwei wird die Datenbank gelöscht, falls sie existiert. Da hier unabhängige Datensätze ohne Verknüpfungen gespeichert werden sollen, wurde sich für das dokumentenbasierte Modell entschieden. Dies ist in Zeile vier bei der Erstellung der Datenbank zu sehen. Der Parameter \texttt{STORAGE\_TYPE\_PLOCAL} gibt an, das der Inhalt auf der Festplatte gespeichert werden soll. Alternativ könnte OrientDB die Daten auch ausschließlich im Arbeitsspeicher halten. Da die Daten allerdings persistent gespeichert werden sollen, wurde hier nicht diese Option gewählt. In Zeile sechs ist die Erstellung der neuen Klasse zu sehen. Die Variable \texttt{self.table\_index\_values\_name} ist ebenfalls in der Konfigurationsdatei definiert und gibt den Namen der Klasse an. Zusätzlich zur Klasse wird hier die Eigenschaft \texttt{Date} mit dem Datentyp \texttt{DATE} definiert. Dies gehört zum Schema der Klasse und wird benötigt, da OrientDB das Datumsfeld sonst als Zeichenkette interpretieren würde.
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Anlegen und initialiseren einer Datenbank in Python, label=list:create_db]
@@ -76,7 +76,16 @@ self.client.command("CREATE PROPERTY " + self.table_index_values_name + ".Date D
     \end{lstlisting}
 \end{figure}
 
-Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen.
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Um die Datenpflege zu automatisieren, wurde eine zweite Konfigurationsdatei mit den einer Liste an Pfaden der einzelnen Dateien und eindeutigen Id's angelegt. Beispielhaft ist der Eintrag des DAX in Listing \ref{list:config_dax} zu sehen.
+
+\begin{figure}[!htb]
+    \begin{lstlisting}[caption=Konfigeintrag des DAX, label=list:config_dax]
+- file_name: "Index DAX Entwicklung.csv"
+  isin: "DE0008469008"
+    \end{lstlisting}
+\end{figure}
+
+% Extract Transform Load
 
 \subsection{Auswertung der Daten}
 % Laden der Daten aus der Datenbank
