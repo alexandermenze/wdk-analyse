@@ -76,7 +76,7 @@ self.client.command("CREATE PROPERTY " + self.table_index_values_name + ".Date D
     \end{lstlisting}
 \end{figure}
 
-Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Um die Datenpflege zu automatisieren, wurde eine zweite Konfigurationsdatei mit den einer Liste an Pfaden der einzelnen Dateien und eindeutigen Id's angelegt. Beispielhaft ist der Eintrag des DAX in Listing \ref{list:config_dax} zu sehen.
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Um die Datenpflege zu automatisieren, wurde eine zweite Konfigurationsdatei mit den einer Liste an Pfaden der einzelnen Dateien und eindeutigen Id's angelegt. Beispielhaft ist der Eintrag des DAX in Listing \ref{list:config_dax} zu sehen. Als eindeutige Id, unter der später die Datensätze in der Datenbank auseinander gehalten werden sollen, wurde die \gls{ISIN} gewählt. Diese stellt eine weltweit eindeutige Bezeichnung für Wertpapierprodukte dar.
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Konfigeintrag des DAX, label=list:config_dax]
@@ -84,6 +84,8 @@ Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenban
   isin: "DE0008469008"
     \end{lstlisting}
 \end{figure}
+
+
 
 % Extract Transform Load
 
