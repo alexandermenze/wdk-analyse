@@ -36,7 +36,19 @@ Außerdem ist interessant ob bestimmte Wochentage insgesamt häufiger positiv od
 
 % Daten kommen von yahoo Finance
 
-Die Daten für die Auswertung kommen von yahoo Finance. Um diese dauerhaft zur späteren Nachverfolgbarkeit zu behalten, wurde der Download als \gls{CSV} Datei statt der \gls{HTTP}-Schnittstelle gewählt. 
+Die Daten für die Auswertung kommen von yahoo Finance. Um diese dauerhaft zur späteren Nachverfolgbarkeit zu behalten, wurde der Download als \gls{CSV} Datei statt der \gls{HTTP}-Schnittstelle gewählt. Es wurden Datensätze für die folgenden Aktienindizes gespeichert:
+
+\begin{itemize}
+    \item DAX (Deutscher Aktienindex) - Die größten 30 Unternehmen an deutschen Börsen. Daten seit 1987.
+    \item Dow Jones Industrial Average - Die größten 30 Unternehmen an amerikanischen Börsen. Daten seit 1992.
+    \item CAC40 - Die größten 40 Unternehmen an der Pariser Börse. Daten seit 1980.
+    \item S\&P 500 - Die größten 500 Unternehmen an amerikanischen Börsen. Daten seit 1970.
+    \item Euronext 100 - Die größten 100 börsennotierten Unternehmen aus den Ländern Frankreich, den Niederlanden, Belgien, Irland und Portugal. Daten seit 2000.
+\end{itemize}
+
+Für jeden Handelstag an der jeweils lokalen Börse existiert ein Datensatz. Diese enthalten das Datum des Tages, den Kurs bei Öffnung der Börse, den Kurs bei Schließung der Börse, das Maximum und Minimum an diesem Tag und das Handelsvolumen. Außerdem wird eine bereinigter Schlusskurs angegeben. Dieser rechnet Einflüsse wie Gewinnausschüttungen oder die Teilung von Aktien\footnote{Wenn ein Aktienpreis zu hoch steigt, kann das Unternehmen seine Aktien teilen. Bei einer 2:1 Teilung wird die Menge der Aktien verdoppelt und dafür der Preis halbiert. Aktien können auch andersherum zusammengeführt werden.} aus dem Schlusskurs heraus um Kurssprünge zu vermeiden. Für die Datenanalyse werden lediglich das Datum, der Öffnungs- und bereinigte Schlusskurs benötigt.
+
+% Wenn keine Ideen mehr Beispieldatensatz einfügen
 
 \subsection{Datenvorbereitung}
 \label{sec:datenvorbereitung}
@@ -44,11 +56,15 @@ Die Daten für die Auswertung kommen von yahoo Finance. Um diese dauerhaft zur s
 %   Behandeln von Ausreißern und fehlenden Daten zwischen den Datensätzen
 %   Wie geht man mit unterschiedlicher Anzahl Wochentagen um? (Normalisierung)
 % Format der Dokumente und Wahl der Tabellen
-% ISIN, Region?, Institution?
+% ISIN
 % CSV Format
 % Schreiben der Daten in die Datenbank
 % Erstellung des Datenbankindex
 % Konfiguration
+
+Um die Daten einlesen zu können musste zuerst die Datenbank aufgesetzt werden. Diese wurde als Docker Container gehostet. Da es Inkompatibilitäten zwischen der Bibliothek PyOrient mit der neusten Version der Datenbank gibt, wurde die Version 2.2.35 der OrientDB genutzt. Die Verbindungs- und Anmeldedaten werden zur Laufzeit des Python Skriptes aus einer \gls{YAML}-Konfigurationsdatei geladen.
+
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen.
 
 \subsection{Auswertung der Daten}
 % Laden der Daten aus der Datenbank
