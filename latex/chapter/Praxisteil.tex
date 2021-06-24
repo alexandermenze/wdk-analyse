@@ -21,9 +21,12 @@ Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie e
 % Berechnet wird die Kursentwicklung eines Tages mit der Formel (Schlusskurs Tag - Schlusskurs letzter Tag)
 % Das ganze kann dann addiert werden nach Wochentagen um eine Gesamtstatistik zu erhalten
 
-In dieser Auswertung soll untersucht werden ob der Weekend Effect in verschiedenen Regionen aufgetreten ist. Falls er existiert, ist ebenfalls interessant ob der Effekt je nach Zeitraum in der Vergangenheit unterschiedlich ausgeprägt war. Dafür werden historische Daten von yahoo Finance mit der Programmiersprache Python und der Datenbank OrientDB ausgewertet. Um bei der Auswertung möglichst die gesamte Entwicklung eines Marktes einzufangen und nicht Anomalien in den Kursverläufen einzelner Aktien zu untersuchen werden dafür ausschließlich Daten von breiter aufgestellten Aktienindizes verwendet. Benötigt werden dazu jeweils tagesaktuelle Daten
+In dieser Auswertung soll untersucht werden ob der Weekend Effect in verschiedenen Regionen aufgetreten ist. Falls er existiert, ist ebenfalls interessant ob der Effekt je nach Zeitraum in der Vergangenheit unterschiedlich ausgeprägt war. Dafür werden historische Daten von yahoo Finance mit der Programmiersprache Python und der Datenbank OrientDB ausgewertet. Um bei der Auswertung möglichst die gesamte Entwicklung eines Marktes einzufangen und nicht Anomalien in den Kursverläufen einzelner Aktien zu untersuchen werden dafür ausschließlich Daten von breiter aufgestellten Aktienindizes verwendet. Benötigt werden dazu für jeden zu untersuchenden Index tägliche Daten. Diese sollten den Tagesschlusskurs, also den Kurs bei Schließung der Börse, und das Tagesdatum enthalten. Dann kann durch das Iterieren über alle Tage jeweils aus dem Schlusskurs des Vortages und dem Schlusskurs des aktuellen Tages die Differenz gebildet werden. Diese Differenzen nach Wochentagen summiert ergeben dann die absoluten Kursveränderungen an den jeweiligen Tagen. Diese sollen anschließend mit der Python Bibliothek \enquote{matplotlib} visualisiert und verglichen werden.
+
+Außerdem ist interessant ob bestimmte Wochentage insgesamt häufiger positiv oder negativ ausfallen. Dafür müssen alle Tage je nach Kursentwicklung gezählt werden. Auch dies soll grafisch dargestellt werden.
 
 % Bibliotheken
+% Normalisierung der Ergebnisse?
 
 \subsection{Datenverständnis}
 % Datenstruktur und Format, Menge, Zeitauflösung etc.
