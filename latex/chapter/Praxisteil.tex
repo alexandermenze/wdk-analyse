@@ -50,8 +50,7 @@ Für jeden Handelstag an der jeweils lokalen Börse existiert ein Datensatz. Die
 
 % Wenn keine Ideen mehr Beispieldatensatz einfügen
 
-\subsection{Datenvorbereitung}
-\label{sec:datenvorbereitung}
+\subsection{Datenbankvorbereitung}
 % Einlesen der Daten und Aufbereitung
 %   Behandeln von Ausreißern und fehlenden Daten zwischen den Datensätzen
 %   Wie geht man mit unterschiedlicher Anzahl Wochentagen um? (Normalisierung)
@@ -76,7 +75,10 @@ self.client.command("CREATE PROPERTY " + self.table_index_values_name + ".Date D
     \end{lstlisting}
 \end{figure}
 
-Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Um die Daten auszulesen wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Um die Datenpflege zu automatisieren, wurde eine zweite Konfigurationsdatei mit den einer Liste an Pfaden der einzelnen Dateien und eindeutigen Id's angelegt. Beispielhaft ist der Eintrag des DAX in Listing \ref{list:config_dax} zu sehen. Als eindeutige Id, unter der später die Datensätze in der Datenbank auseinander gehalten werden sollen, wurde die \gls{ISIN} gewählt. Diese stellt eine weltweit eindeutige Bezeichnung für Wertpapierprodukte dar.
+\subsection{Datenvorbereitung}
+\label{sec:datenvorbereitung}
+
+Um die Einpflege der Daten zu automatisieren, wurde eine zweite Konfigurationsdatei mit den einer Liste an Pfaden der einzelnen Dateien und eindeutigen Id's angelegt. Beispielhaft ist der Eintrag des DAX in Listing \ref{list:config_dax} zu sehen. Als eindeutige Id, unter der später die Datensätze in der Datenbank auseinander gehalten werden sollen, wurde die \gls{ISIN} gewählt. Diese stellt eine weltweit eindeutige Bezeichnung für Wertpapierprodukte dar.
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Konfigeintrag des DAX, label=list:config_dax]
@@ -85,9 +87,21 @@ Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenban
     \end{lstlisting}
 \end{figure}
 
+Als nächstes wurde sich mit der Aufbereitung und dem Einpflegen in die Datenbank beschäftigt. Dies soll nach dem \gls{ETL} Prozess geschehen. Das bedeutet zuerst werden die Daten aus der Ursprungsquelle extrahiert. Dann werden sie transformiert, also auf die spätere Nutzung angepasst. Als letztes werden die Daten in die Zieldatenbank geschrieben. Um die Daten zuerst auszulesen, wurde die Python Bibliothek \enquote{pandas} verwendet. Diese erlaubt das Lesen von tabellarischen Daten aus einer Vielzahl an Datenformaten und Quellen. Dafür wird durch die Liste der Datendateien in der Konfigurationsdatei iteriert. Jede Datei wird über den Befehl \texttt{pandas.read_csv(path)} als DataFrame in den Arbeitsspeicher geladen.
 
+% Entscheidung Cluster, Index
 
-% Extract Transform Load
+\begin{figure}[!htb]
+    \begin{lstlisting}[caption=Konfigeintrag des DAX, label=list:config_dax]
+df.columns = df.columns.str.replace(' ', '_')
+
+if "Adj_Close" in df.columns:
+    df["Close"] = df["Adj_Close"]
+
+df.drop(['High', 'Low', 'Adj_Close', 'Volume'], axis=1, errors='ignore', inplace=True)
+df.dropna(inplace=True)
+    \end{lstlisting}
+\end{figure}
 
 \subsection{Auswertung der Daten}
 % Laden der Daten aus der Datenbank
