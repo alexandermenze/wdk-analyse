@@ -165,18 +165,20 @@ def __sum_value_changes(data, weekday, positive_change):
     \end{lstlisting}
 \end{figure}
 
+In der Tabelle \ref{tab:ausw_sp500} ist Beispielhaft die Auswertung, die mit der Funktion aus Listing \ref{list:calc_auswertung} erstellt wurde, für den S\&P 500 über den Zeitraum vom 01.01.1970 bis zum 24.06.2021 zu sehen. Die Eigenschaften \texttt{total\_pos} und \texttt{total\_neg} beschreiben die absolute positive bzw. negative Entwicklung an den Wochentagen. \texttt{total} ist die Summe der beiden und gibt damit die gesamte Kursveränderung an. Hier ist zu sehen das sich der Kurs des Index entsprechend des \enquote{Weekend Effect} tatsächlich montags mit 411,6461 Punkten am schlechtesten entwickelt hat. Allerdings liegt der Donnerstag mit 561,4188 Punkten sehr nah dran.
+
 \begin{table}[hbt]
     \centering
     \begin{minipage}[t]{1\textwidth} % Breite, z.B. 1\textwidth		
         \caption{Auswertung der Daten des S\&P500 im Zeitraum 01-01-1970 bis 24-06-2021} % Überschrift
         \begin{tabularx}{\columnwidth}{ |c|X|X|X|X| }
             \hline
-            \textbf{weekday} & \textbf{days\_pos} & \textbf{days\_neg} & \textbf{total\_pos} & \textbf{total\_neg} \\ \hline
-            Monday           & 1272               & 1193               & 8752.1193           & -8340.4732          \\ \hline
-            Tuesday          & 1370               & 1287               & 9697.5109           & -8252.4696          \\ \hline
-            Wednesday        & 1478               & 1183               & 9207.6223           & -8129.4499          \\ \hline
-            Thursday         & 1378               & 1232               & 9082.4919           & -8521.0731          \\ \hline
-            Friday           & 1401               & 1192               & 8901.1113           & -8131.5999          \\ \hline
+            \textbf{weekday} & \textbf{total\_pos} & \textbf{total\_neg} & \textbf{total} \\ \hline
+            Monday           & 8752,1193           & -8340,4732          & 411,6461       \\ \hline
+            Tuesday          & 9697,5109           & -8252,4696          & 1445,0413      \\ \hline
+            Wednesday        & 9207,6223           & -8129,4499          & 1078,1724      \\ \hline
+            Thursday         & 9082,4919           & -8521,0731          & 561,4188       \\ \hline
+            Friday           & 8901,1113           & -8131,5999          & 769,5114       \\ \hline
         \end{tabularx}
         \source{eigene Darstellung}
         \label{tab:ausw_sp500}
