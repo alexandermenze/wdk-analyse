@@ -29,10 +29,10 @@ class IndexTimeRanges(object):
         self.time_ranges = time_ranges
 
 
-def create_weekday_statistic(data, close_last_to_open=True):
+def create_weekday_statistic(data):
     return list([
-        WeekdayStatistic(i, __count_days_by_weekday(data, i), __count_days_pos_neg(data, i, True, close_last_to_open), __count_days_pos_neg(
-            data, i, False, close_last_to_open), __sum_value_changes(data, i, True, close_last_to_open), __sum_value_changes(data, i, False, close_last_to_open))
+        WeekdayStatistic(i, __count_days_by_weekday(data, i), __count_days_pos_neg(data, i, True), __count_days_pos_neg(
+            data, i, False), __sum_value_changes(data, i, True), __sum_value_changes(data, i, False))
         for i
         in range(0, 5)
     ])
@@ -43,7 +43,7 @@ def __count_days_by_weekday(data, weekday):
     return len([s for s in data if s.date.weekday() == weekday])
 
 
-def __count_days_pos_neg(data, weekday, count_positive, close_last_to_open):
+def __count_days_pos_neg(data, weekday, count_positive):
     # Count positive or negative days in dataset
 
     last_value = 0
@@ -52,7 +52,7 @@ def __count_days_pos_neg(data, weekday, count_positive, close_last_to_open):
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
             curr_value = d.close - \
-                last_value if last_value != 0 and close_last_to_open else d.close - d.open
+                last_value if last_value != 0 else d.close - d.open
 
             if count_positive and curr_value >= 0:
                 days += 1
@@ -64,7 +64,7 @@ def __count_days_pos_neg(data, weekday, count_positive, close_last_to_open):
     return days
 
 
-def __sum_value_changes(data, weekday, positive_change, close_last_to_open):
+def __sum_value_changes(data, weekday, positive_change):
     # Sum the total positive or negative value changes
 
     last_close = 0
@@ -73,7 +73,7 @@ def __sum_value_changes(data, weekday, positive_change, close_last_to_open):
     for d in sorted(data, key=operator.attrgetter('date')):
         if d.date.weekday() == weekday:
             curr_value = d.close - \
-                last_close if last_close != 0 and close_last_to_open else d.close - d.open
+                last_close if last_close != 0 else d.close - d.open
 
             if positive_change and curr_value >= 0:
                 value += curr_value

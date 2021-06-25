@@ -8,6 +8,7 @@
 Im Praxisteil dieser Arbeit soll zuerst das Problem beschrieben werden und wie es fachlich gelöst werden kann. Dazu gehört auch die Auswahl der Werkzeuge für die Umsetzung. Anschließend folgt die Strukturierung und Planung der Daten. Dies beinhaltet die Erstellung einer begründeten Datenstruktur. In dem Kapitel der \nameref{sec:datenvorbereitung} geht es dann um die Beschaffung, Aufbereitung und das Einlesen der Quelldaten in die Datenbank. Abschließend wird die Auswertung durchgeführt.
 
 \subsection{Problemverständnis und Planung}
+\label{sec:planung}
 % Die konkreten Berechnungen hier einfügen
 % Welche Daten werden benötigt?
 % Welche Werkzeuge sollen genutzt werden (Wie sollen die Daten angezeigt werden um das Problem zu erläutern?)
@@ -124,8 +125,7 @@ for index, row in df.iterrows():
 % Zahlenoutput der Auswertung
 % Problematisch wenn Daten fehlen? null, null, null etc.
 
-Für die Auswertung der Daten soll die gesamte Entwicklung jedes Aktienindex visualisiert werden. Zusätzlich sollen auch 10-Jahres Zeiträume untersucht werden um zu belegen das es sich nicht um eine zufällige Erscheinungen
-handelt. Zehn Jahre wurden dabei gewählt um den Einfluss von kürzeren Börsenabstürzen minimal zu halten. In Listing \ref{list:manual_def} ist die Definition der Zeiträume im Python Code zu sehen. Beispielhaft werden hier einige Zeiträume des DAX und S\&P500 dargestellt. Da die Daten von yahoo Finance je nach Index unterschiedlich weit in die Vergangenheit reichen, wurden diese für jeden individuell angegeben.
+Für die Auswertung der Daten soll die gesamte Entwicklung jedes Aktienindex nach Wochentagen aufgeteilt visualisiert werden. Zusätzlich sollen auch 10-Jahres Zeiträume untersucht werden um zu belegen das es sich nicht um eine zufällige Erscheinungen handelt. Zehn Jahre wurden dabei gewählt um den Einfluss von kürzeren Börsenabstürzen minimal zu halten. In Listing \ref{list:manual_def} ist die Definition der Zeiträume im Python Code zu sehen. Beispielhaft werden hier einige Zeiträume des DAX und S\&P500 dargestellt. Da die Daten von yahoo Finance je nach Index unterschiedlich weit in die Vergangenheit reichen, wurden diese für jeden individuell angegeben.
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Manuelle Definition der Untersuchungszeiträume, label=list:manual_def]
@@ -141,5 +141,55 @@ index_time_ranges = [
         ...
     \end{lstlisting}
 \end{figure}
+
+Die Auswertung wurde wie im Kapitel \cref{sec:planung} berechnet. Dafür wurde die in Listing \ref{list:calc_auswertung} abgebildete Funktion geschrieben. Diese summiert unter Angabe eines Wochentages und ob die positive oder negative Entwicklung betrachtet werden soll alle Tageskursentwicklungen der übergebenen Daten. Dabei müssen die Tage wie in Zeile fünf angegeben nach ihrem Datum sortiert durchlaufen werden. Sonst kann nicht die Differenz aus Schlusskurs und Schlusskurs des letzten Eintrags in der Schleife berechnet werden. Der letzte Schlusskurs wird dabei in der Variablen \texttt{last\_close} festgehalten. Für den ersten Eintrag wird die Differenz aus dem Schlusskurs und dem Öffnungskurs verwendet (siehe Zeile sieben).
+
+\begin{figure}[!htb]
+    \begin{lstlisting}[caption=Berechnung der Kursentwicklung nach Wochentag, label=list:calc_auswertung]
+def __sum_value_changes(data, weekday, positive_change):
+    last_close = 0
+    value = 0
+
+    for d in sorted(data, key=operator.attrgetter('date')):
+        if d.date.weekday() == weekday:
+            curr_value = d.close - last_close if last_close != 0 else d.close - d.open
+
+            if positive_change and curr_value >= 0:
+                value += curr_value
+            elif not positive_change and curr_value < 0:
+                value += curr_value
+
+        last_close = d.close
+
+    return value
+    \end{lstlisting}
+\end{figure}
+
+\begin{table}[hbt]
+    \centering
+    \begin{minipage}[t]{1\textwidth} % Breite, z.B. 1\textwidth		
+        \caption{Auswertung der Daten des S\&P500 im Zeitraum 01-01-1970 bis 24-06-2021} % Überschrift
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            \textbf{weekday} & \textbf{days\_pos} & \textbf{days\_neg} & \textbf{total\_pos} & \textbf{total\_neg} \\ \hline
+            Monday           & 1272               & 1193               & 8752.1193           & -8340.4732          \\ \hline
+            Tuesday          & 1370               & 1287               & 9697.5109           & -8252.4696          \\ \hline
+            Wednesday        & 1478               & 1183               & 9207.6223           & -8129.4499          \\ \hline
+            Thursday         & 1378               & 1232               & 9082.4919           & -8521.0731          \\ \hline
+            Friday           & 1401               & 1192               & 8901.1113           & -8131.5999          \\ \hline
+        \end{tabular}
+        % \begin{tabularx}{\columnwidth}{ |c|X| }
+        %     \hline
+        %     \textbf{weekday} & \textbf{count} & \textbf{days_positive} & \textbf{days_negative} & \textbf{total_positive} & \textbf{total_negative} & \textbf{days_ratio} & \textbf{total_ratio} \\
+        %     \hline
+        %     Monday           & 2465           & 1272                   & 1193                   & 8752.119                & -8340.473               & 1.0662              & 1.0494               \\
+        %     \hline
+        %     Tuesday          & 2465           & 1272                   & 1193                   & 8752.119                & -8340.473               & 1.0662              & 1.0494               \\
+        %     \hline
+        % \end{tabularx}
+        \source{eigene Darstellung}
+        \label{tab:ausw_sp500}
+    \end{minipage}
+\end{table}
 
 \clearpage
