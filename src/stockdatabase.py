@@ -41,7 +41,7 @@ class StockDatabase(object):
         self.client.command("CREATE PROPERTY " +
                             self.table_index_values_name + ".Date DATE")
         self.client.command(
-            "CREATE INDEX " + self.table_index_values_name + ".Date UNIQUE")
+            "CREATE INDEX " + self.table_index_values_name + ".Date NOTUNIQUE")
 
     def query_index_values(self, isin, date_start=None, date_end=None, limit=-1):
         cluster_name = "index_" + isin
