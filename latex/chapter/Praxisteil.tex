@@ -169,7 +169,7 @@ def __sum_value_changes(data, weekday, positive_change):
     \centering
     \begin{minipage}[t]{1\textwidth} % Breite, z.B. 1\textwidth		
         \caption{Auswertung der Daten des S\&P500 im Zeitraum 01-01-1970 bis 24-06-2021} % Überschrift
-        \begin{tabular}{|l|l|l|l|l|}
+        \begin{tabularx}{\columnwidth}{ |c|X|X|X|X| }
             \hline
             \textbf{weekday} & \textbf{days\_pos} & \textbf{days\_neg} & \textbf{total\_pos} & \textbf{total\_neg} \\ \hline
             Monday           & 1272               & 1193               & 8752.1193           & -8340.4732          \\ \hline
@@ -177,16 +177,7 @@ def __sum_value_changes(data, weekday, positive_change):
             Wednesday        & 1478               & 1183               & 9207.6223           & -8129.4499          \\ \hline
             Thursday         & 1378               & 1232               & 9082.4919           & -8521.0731          \\ \hline
             Friday           & 1401               & 1192               & 8901.1113           & -8131.5999          \\ \hline
-        \end{tabular}
-        % \begin{tabularx}{\columnwidth}{ |c|X| }
-        %     \hline
-        %     \textbf{weekday} & \textbf{count} & \textbf{days_positive} & \textbf{days_negative} & \textbf{total_positive} & \textbf{total_negative} & \textbf{days_ratio} & \textbf{total_ratio} \\
-        %     \hline
-        %     Monday           & 2465           & 1272                   & 1193                   & 8752.119                & -8340.473               & 1.0662              & 1.0494               \\
-        %     \hline
-        %     Tuesday          & 2465           & 1272                   & 1193                   & 8752.119                & -8340.473               & 1.0662              & 1.0494               \\
-        %     \hline
-        % \end{tabularx}
+        \end{tabularx}
         \source{eigene Darstellung}
         \label{tab:ausw_sp500}
     \end{minipage}
