@@ -123,7 +123,7 @@ for index, row in df.iterrows():
 % Zahlenoutput der Auswertung
 % Problematisch wenn Daten fehlen? null, null, null etc.
 
-Für die Auswertung der Daten soll die gesamte Entwicklung jedes Aktienindizes, nach Wochentagen aufgeteilt, visualisiert werden. Zusätzlich sollen auch 10-Jahres Zeiträume untersucht werden, um zu belegen das es sich nicht um eine zufällige Erscheinung handelt. Zehn Jahre wurden dabei gewählt um den Einfluss von kürzeren Börsenabstürzen minimal zu halten. In Listing \ref{list:manual_def} ist die Definition der Zeiträume im Python Code zu sehen. Beispielhaft werden hier einige Zeiträume des DAX und S\&P500 dargestellt. Da die Daten von yahoo Finance je nach Index unterschiedlich weit in die Vergangenheit reichen, wurden diese für jeden individuell angegeben.
+Für die Auswertung der Daten soll die gesamte Entwicklung jedes Aktienindizes, nach Wochentagen aufgeteilt, visualisiert werden. Zusätzlich sollen auch 10-Jahres Zeiträume untersucht werden, um zu belegen das es sich nicht um eine zufällige Erscheinung handelt. Zehn Jahre wurden dabei gewählt um den Einfluss von kleinen Schwankungen minimal zu halten. In Listing \ref{list:manual_def} ist die Definition der Zeiträume im Python Code zu sehen. Beispielhaft werden hier einige Zeiträume des DAX und S\&P500 dargestellt. Da die Daten von yahoo Finance je nach Index unterschiedlich weit in die Vergangenheit reichen, wurden diese für jeden individuell angegeben.
 
 \begin{figure}[!htb]
     \begin{lstlisting}[caption=Manuelle Definition der Untersuchungszeiträume, label=list:manual_def]
@@ -163,7 +163,7 @@ def __sum_value_changes(data, weekday, positive_change):
     \end{lstlisting}
 \end{figure}
 
-In der Tabelle \ref{tab:ausw_sp500} ist eine beispielhafte Auswertung, die mit der Funktion aus Listing \ref{list:calc_auswertung} erstellt wurde. Diese wurde für den S\&P 500 und den Zeitraum vom 01.01.1970 bis zum 24.06.2021 erstellt. Die Eigenschaften \texttt{total\_pos} und \texttt{total\_neg} beschreiben die absolute positive bzw. negative Entwicklung an den Wochentagen. \texttt{total} ist die Summe der beiden und gibt damit die gesamte Kursveränderung an. Hier ist zu sehen das sich der Kurs des Index entsprechend des \enquote{Weekend Effect} tatsächlich montags mit 411,6461 Punkten am schlechtesten entwickelt hat. Allerdings liegt der Donnerstag mit 561,4188 Punkten sehr nah dran. Der beste Wert mit 1445,0413 Punkten tritt am Dienstag auf. Die Auswertung ist in grafischer Form im Anhang unter Abbildung \ref{fig:auswertung_sp500_graph} zu sehen.
+In der Tabelle \ref{tab:ausw_sp500} ist die Auswertung, die mit der Funktion aus Listing \ref{list:calc_auswertung} erstellt wurde, zu sehen. Diese wurde für den S\&P 500 und den Zeitraum vom 01.01.1970 bis zum 24.06.2021 erstellt. Die Eigenschaften \texttt{total\_pos} und \texttt{total\_neg} beschreiben die absolute positive bzw. negative Entwicklung an den Wochentagen. \texttt{total} ist die Summe der beiden und gibt damit die gesamte Kursveränderung an. Hier ist zu sehen das sich der Kurs des Index entsprechend des \enquote{Weekend Effect} tatsächlich montags mit 411,6461 Punkten am schlechtesten entwickelt hat. Allerdings liegt der Donnerstag mit 561,4188 Punkten sehr nah dran. Der beste Wert mit 1445,0413 Punkten tritt am Dienstag auf. Die Auswertung ist in grafischer Form im Anhang unter Abbildung \ref{fig:auswertung_sp500_graph} zu sehen.
 
 \begin{table}[hbt]
     \centering
